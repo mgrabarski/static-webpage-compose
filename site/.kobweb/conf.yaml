@@ -1,0 +1,14 @@
+site:
+  title: "Empty"
+
+server:
+  files:
+    dev:
+      contentRoot: "build/processedResources/js/main/public"
+      script: "build/developmentExecutable/empty.js"
+      api: "build/libs/empty.jar"
+    prod:
+      script: "build/distributions/empty.js"
+      siteRoot: ".kobweb/site"
+
+  port: 8080
