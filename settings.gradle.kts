@@ -6,6 +6,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = "landing page compose"
+rootProject.name = "landingPageCompose"
 
 include(":site")
