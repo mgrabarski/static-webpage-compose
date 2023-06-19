@@ -124,7 +124,7 @@ fun AboutMe() {
             Text(LOREM_IPSUM_LONG)
         }
         enumValues<Skill>().forEach { skill ->
-            SkillBar(name = skill.name, percentage = skill.percentage)
+            SkillBar(name = skill.title, percentage = skill.percentage)
         }
     }
 }
