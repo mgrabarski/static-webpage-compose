@@ -8,6 +8,7 @@ import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxSize
 import com.varabyte.kobweb.core.Page
+import org.example.empty.sections.AboutSection
 import org.example.empty.sections.MainSection
 import org.jetbrains.compose.web.dom.Text
 
@@ -20,5 +21,6 @@ fun HomePage() {
         verticalArrangement = Arrangement.Top
     ) {
         MainSection()
+        AboutSection()
     }
 }
