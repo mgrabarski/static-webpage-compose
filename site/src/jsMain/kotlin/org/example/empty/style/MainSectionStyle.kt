@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalComposeWebApi::class, ExperimentalComposeWebApi::class, ExperimentalComposeWebApi::class)
 
-package org.example.empty.empty
+package org.example.empty.style
 
 import com.varabyte.kobweb.compose.css.CSSTransition
 import com.varabyte.kobweb.compose.ui.Modifier
