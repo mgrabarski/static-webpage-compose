@@ -1,6 +1,12 @@
 package org.example.empty.sections
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import com.varabyte.kobweb.compose.css.FontStyle
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
@@ -25,6 +31,7 @@ import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
+import kotlinx.coroutines.launch
 import org.example.empty.components.SectionTitle
 import org.example.empty.components.SkillBar
 import org.example.empty.models.Section
@@ -32,9 +39,11 @@ import org.example.empty.models.Skill
 import org.example.empty.models.Theme
 import org.example.empty.style.AboutImageStyle
 import org.example.empty.style.AboutTextStyle
+import org.example.empty.util.AnimatePercentage
 import org.example.empty.util.Constants
 import org.example.empty.util.Constants.SECTION_WIDTH
 import org.example.empty.util.LOREM_IPSUM_LONG
+import org.example.empty.util.ObserveViewportEntered
 import org.example.empty.util.Res
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
@@ -105,6 +114,28 @@ fun AboutImage() {
 
 @Composable
 fun AboutMe() {
+    val scope = rememberCoroutineScope()
+    var viewportEntered by remember { mutableStateOf(false) }
+    val animatedPercentage = remember { mutableStateListOf(0, 0, 0, 0, 0) }
+
+    ObserveViewportEntered(
+        sectionId = Section.About.id,
+        distanceFromTop = 400.0,
+        onViewPortEntered = {
+            viewportEntered = true
+            enumValues<Skill>().forEach { skill ->
+                scope.launch {
+                    AnimatePercentage(
+                        percent = skill.percentage.value.toInt(),
+                        onUpdate = {
+                            animatedPercentage[skill.ordinal] = it
+                        }
+                    )
+                }
+            }
+        }
+    )
+
     Column(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center
@@ -124,7 +155,12 @@ fun AboutMe() {
             Text(LOREM_IPSUM_LONG)
         }
         enumValues<Skill>().forEach { skill ->
-            SkillBar(name = skill.title, percentage = skill.percentage)
+            SkillBar(
+                name = skill.title,
+                index = skill.ordinal,
+                percentage = if (viewportEntered) skill.percentage else 0.percent,
+                animatedPercentage = if (viewportEntered) animatedPercentage[skill.ordinal] else 0
+            )
         }
     }
 }
