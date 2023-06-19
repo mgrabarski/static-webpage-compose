@@ -48,16 +48,17 @@ import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
-import org.example.empty.empty.LogoStyle
-import org.example.empty.empty.MainButtonStyle
-import org.example.empty.empty.MainImageStyle
-import org.example.empty.empty.NavigationItemStyle
-import org.example.empty.empty.SocialLinkStyle
 import org.example.empty.models.Section
 import org.example.empty.models.Theme
+import org.example.empty.style.LogoStyle
+import org.example.empty.style.MainButtonStyle
+import org.example.empty.style.MainImageStyle
+import org.example.empty.style.NavigationItemStyle
+import org.example.empty.style.SocialLinkStyle
 import org.example.empty.util.Constants
 import org.example.empty.util.Constants.FONT_FAMILY
 import org.example.empty.util.Constants.SECTION_WIDTH
+import org.example.empty.util.LOREM_IPSUM_SHORT
 import org.example.empty.util.Res
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
@@ -67,8 +68,6 @@ import org.jetbrains.compose.web.dom.Text
 
 @Composable
 fun MainSection() {
-    val breakpoint = rememberBreakpoint()
-
     Box(
         modifier = Modifier
             .id(Section.Home.id)
@@ -76,7 +75,7 @@ fun MainSection() {
         contentAlignment = Alignment.TopCenter
     ) {
         MainBackground()
-        MainContent(breakpoint = breakpoint)
+        MainContent()
     }
 }
 
@@ -92,9 +91,9 @@ fun MainBackground() {
 }
 
 @Composable
-fun MainContent(
-    breakpoint: Breakpoint
-) {
+fun MainContent() {
+    val breakpoint = rememberBreakpoint()
+
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -299,7 +298,7 @@ fun MainText(
                     .color(Theme.Secondary.rgb)
                     .toAttrs()
             ) {
-                Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
+                Text(LOREM_IPSUM_SHORT)
             }
 
             Button(
