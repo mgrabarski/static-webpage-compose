@@ -32,5 +32,6 @@ object Res {
         const val business = "business_icon.svg"
         const val apple = "apple_icon.svg"
         const val android = "android_icon.svg"
+        const val link = "link_icon.svg"
     }
 }
