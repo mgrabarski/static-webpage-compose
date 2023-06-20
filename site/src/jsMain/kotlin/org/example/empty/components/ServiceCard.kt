@@ -7,19 +7,21 @@ import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.border
 import com.varabyte.kobweb.compose.ui.modifiers.borderRadius
-import com.varabyte.kobweb.compose.ui.modifiers.color
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.fontFamily
 import com.varabyte.kobweb.compose.ui.modifiers.fontSize
 import com.varabyte.kobweb.compose.ui.modifiers.fontWeight
+import com.varabyte.kobweb.compose.ui.modifiers.id
 import com.varabyte.kobweb.compose.ui.modifiers.margin
 import com.varabyte.kobweb.compose.ui.modifiers.maxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.compose.ui.modifiers.size
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.silk.components.graphics.Image
+import com.varabyte.kobweb.silk.components.style.toModifier
 import org.example.empty.models.Service
 import org.example.empty.models.Theme
+import org.example.empty.style.ServiceCardStyle
 import org.example.empty.util.Constants
 import org.jetbrains.compose.web.css.LineStyle
 import org.jetbrains.compose.web.css.px
@@ -31,18 +33,14 @@ fun ServiceCard(
     service: Service
 ) {
     Column(
-        modifier = Modifier
+        modifier = ServiceCardStyle.toModifier()
             .maxWidth(size = 300.px)
             .margin(all = 20.px)
             .padding(all = 20.px)
-            .border(
-                width = 2.px,
-                style = LineStyle.Solid,
-                color = Theme.LighterGray.rgb
-            )
     ) {
         Box(
             modifier = Modifier
+                .id(value = ServiceCardId.ICON)
                 .padding(all = 10.px)
                 .margin(bottom = 20.px)
                 .border(
@@ -71,7 +69,6 @@ fun ServiceCard(
                 .fontFamily(Constants.FONT_FAMILY)
                 .fontSize(value = 18.px)
                 .fontWeight(value = FontWeight.Bold)
-                .color(Theme.Secondary.rgb)
                 .toAttrs()
         ) {
             Text(service.title)
@@ -83,10 +80,13 @@ fun ServiceCard(
                 .fontFamily(Constants.FONT_FAMILY)
                 .fontSize(value = 14.px)
                 .fontWeight(value = FontWeight.Normal)
-                .color(Theme.Secondary.rgb)
                 .toAttrs()
         ) {
             Text(service.description)
         }
     }
+}
+
+object ServiceCardId {
+    const val ICON = "iconBox"
 }
