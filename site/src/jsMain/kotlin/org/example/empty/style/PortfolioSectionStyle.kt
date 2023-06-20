@@ -24,26 +24,29 @@ import org.jetbrains.compose.web.css.px
 val PortfolioSectionStyle by ComponentStyle {
     cssRule(" > #$COLUMN_PARENT > #$BOX_PARENT > #$GREEN_OVERLAY") {
         Modifier
-            .width(0.px)
+            .width(size = 0.px)
             .transition(CSSTransition(property = "width", duration = 500.ms))
     }
 
     cssRule(":hover > #$COLUMN_PARENT > #$BOX_PARENT > #$GREEN_OVERLAY") {
-        Modifier.width(300.px)
+        Modifier
+            .width(size = 300.px)
     }
 
     cssRule(" > #$COLUMN_PARENT > #$BOX_PARENT > #$GREEN_OVERLAY > #$LINK_ICON") {
-        Modifier.visibility(Visibility.Hidden)
+        Modifier
+            .visibility(visibility = Visibility.Hidden)
     }
 
     cssRule(":hover > #$COLUMN_PARENT > #$BOX_PARENT > #$GREEN_OVERLAY > #$LINK_ICON") {
-        Modifier.visibility(Visibility.Visible)
+        Modifier
+            .visibility(visibility = Visibility.Visible)
     }
 
     cssRule(" > #$COLUMN_PARENT > #$TITLE") {
         Modifier
-            .color(Theme.Secondary.rgb)
-            .translateX(0.percent)
+            .color(color = Theme.Secondary.rgb)
+            .translateX(tx = 0.percent)
             .transition(
                 CSSTransition(property = "color", duration = 200.ms),
                 CSSTransition(property = "translate", duration = 200.ms)
@@ -52,17 +55,30 @@ val PortfolioSectionStyle by ComponentStyle {
 
     cssRule(":hover > #$COLUMN_PARENT > #$TITLE") {
         Modifier
-            .color(Theme.Primary.rgb)
-            .translateX(5.percent)
+            .color(color = Theme.Primary.rgb)
+            .translateX(tx = 5.percent)
     }
 
     cssRule(" > #$COLUMN_PARENT > #$DESCRIPTION") {
         Modifier
-            .translateX(0.percent)
+            .translateX(tx = 0.percent)
             .transition(CSSTransition(property = "translate", duration = 200.ms))
     }
 
     cssRule(":hover > #$COLUMN_PARENT > #$DESCRIPTION") {
-        Modifier.translateX(5.percent)
+        Modifier.translateX(tx = 5.percent)
+    }
+}
+
+val PortfolioArrowIconStyle by ComponentStyle {
+    base {
+        Modifier
+            .color(color = Theme.Gray.rgb)
+            .transition(
+                CSSTransition(property = "color", duration = 200.ms)
+            )
+    }
+    hover {
+        Modifier.color(color = Theme.Primary.rgb)
     }
 }
