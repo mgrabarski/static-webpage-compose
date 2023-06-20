@@ -9,6 +9,7 @@ import com.varabyte.kobweb.compose.ui.modifiers.fillMaxSize
 import com.varabyte.kobweb.core.Page
 import org.example.empty.sections.AboutSection
 import org.example.empty.sections.MainSection
+import org.example.empty.sections.PortfolioSection
 import org.example.empty.sections.ServiceSection
 
 @Page
@@ -22,5 +23,6 @@ fun HomePage() {
         MainSection()
         AboutSection()
         ServiceSection()
+        PortfolioSection()
     }
 }
