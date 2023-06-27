@@ -93,7 +93,7 @@ private fun TestimonialSectionContent() {
 }
 
 @Composable
-fun TestimonialCards(
+private fun TestimonialCards(
     breakpoint: Breakpoint,
     selectedPage: Int
 ) {
@@ -170,7 +170,7 @@ fun TestimonialCards(
 }
 
 @Composable
-fun TestimonialNavigation(
+private fun TestimonialNavigation(
     selectedPage: Int,
     onNavigate: (Int) -> Unit
 ) {
