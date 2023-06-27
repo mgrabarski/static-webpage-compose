@@ -33,5 +33,9 @@ object Res {
         const val apple = "apple_icon.svg"
         const val android = "android_icon.svg"
         const val link = "link_icon.svg"
+        const val user = "user_icon.svg"
+        const val shield = "shield_icon.svg"
+        const val happy = "happy_icon.svg"
+        const val checkmark = "checkmark_icon.svg"
     }
 }
