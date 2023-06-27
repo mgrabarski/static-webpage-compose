@@ -23,6 +23,12 @@ object Res {
         const val portfolio3 = "portfolio3.png"
         const val portfolio4 = "portfolio4.jpg"
         const val portfolio5 = "portfolio5.png"
+        const val avatar1 = "avatar1.png"
+        const val avatar2 = "avatar2.png"
+        const val avatar3 = "avatar3.png"
+        const val avatar4 = "avatar4.png"
+        const val avatar5 = "avatar5.png"
+        const val avatar6 = "avatar6.png"
     }
 
     object Icon {
@@ -37,5 +43,6 @@ object Res {
         const val shield = "shield_icon.svg"
         const val happy = "happy_icon.svg"
         const val checkmark = "checkmark_icon.svg"
+        const val star = "star_icon.svg"
     }
 }

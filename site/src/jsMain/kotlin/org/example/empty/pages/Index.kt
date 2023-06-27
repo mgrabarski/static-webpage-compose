@@ -12,6 +12,7 @@ import org.example.empty.sections.AchievementsSection
 import org.example.empty.sections.MainSection
 import org.example.empty.sections.PortfolioSection
 import org.example.empty.sections.ServiceSection
+import org.example.empty.sections.TestimonialSection
 
 @Page
 @Composable
@@ -26,5 +27,6 @@ fun HomePage() {
         ServiceSection()
         PortfolioSection()
         AchievementsSection()
+        TestimonialSection()
     }
 }
