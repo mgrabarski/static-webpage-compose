@@ -39,7 +39,7 @@ import org.example.empty.models.Skill
 import org.example.empty.models.Theme
 import org.example.empty.style.AboutImageStyle
 import org.example.empty.style.AboutTextStyle
-import org.example.empty.util.AnimatePercentage
+import org.example.empty.util.AnimateNumbers
 import org.example.empty.util.Constants
 import org.example.empty.util.Constants.SECTION_WIDTH
 import org.example.empty.util.LOREM_IPSUM_LONG
@@ -125,8 +125,8 @@ fun AboutMe() {
             viewportEntered = true
             enumValues<Skill>().forEach { skill ->
                 scope.launch {
-                    AnimatePercentage(
-                        percent = skill.percentage.value.toInt(),
+                    AnimateNumbers(
+                        number = skill.percentage.value.toInt(),
                         onUpdate = {
                             animatedPercentage[skill.ordinal] = it
                         }

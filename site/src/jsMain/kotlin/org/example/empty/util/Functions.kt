@@ -37,12 +37,12 @@ fun ObserveViewportEntered(
     }
 }
 
-suspend fun AnimatePercentage(
-    percent: Int,
+suspend fun AnimateNumbers(
+    number: Int,
     delay: Long = 10L,
     onUpdate: (Int) -> Unit
 ) {
-    repeat((0..percent).count()) {
+    repeat((0..number).count()) {
         delay(delay)
         onUpdate(it)
     }
