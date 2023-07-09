@@ -29,8 +29,10 @@ import com.varabyte.kobweb.compose.ui.modifiers.height
 import com.varabyte.kobweb.compose.ui.modifiers.id
 import com.varabyte.kobweb.compose.ui.modifiers.margin
 import com.varabyte.kobweb.compose.ui.modifiers.maxWidth
+import com.varabyte.kobweb.compose.ui.modifiers.minHeight
 import com.varabyte.kobweb.compose.ui.modifiers.minWidth
 import com.varabyte.kobweb.compose.ui.modifiers.objectFit
+import com.varabyte.kobweb.compose.ui.modifiers.onClick
 import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.compose.ui.modifiers.textDecorationLine
 import com.varabyte.kobweb.compose.ui.toAttrs
@@ -67,7 +69,9 @@ import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
 
 @Composable
-fun MainSection() {
+fun MainSection(
+    onMenuClicked: () -> Unit
+) {
     Box(
         modifier = Modifier
             .id(Section.Home.id)
@@ -75,7 +79,9 @@ fun MainSection() {
         contentAlignment = Alignment.TopCenter
     ) {
         MainBackground()
-        MainContent()
+        MainContent(
+            onMenuClicked = onMenuClicked
+        )
     }
 }
 
@@ -91,7 +97,9 @@ fun MainBackground() {
 }
 
 @Composable
-fun MainContent() {
+fun MainContent(
+    onMenuClicked: () -> Unit
+) {
     val breakpoint = rememberBreakpoint()
 
     Column(
@@ -100,7 +108,10 @@ fun MainContent() {
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Header(breakpoint = breakpoint)
+        Header(
+            breakpoint = breakpoint,
+            onMenuClicked = onMenuClicked
+        )
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Bottom,
@@ -119,7 +130,8 @@ fun MainContent() {
 
 @Composable
 fun Header(
-    breakpoint: Breakpoint
+    breakpoint: Breakpoint,
+    onMenuClicked: () -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -128,7 +140,10 @@ fun Header(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        LeftSide(breakpoint = breakpoint)
+        LeftSide(
+            breakpoint = breakpoint,
+            onMenuClicked = onMenuClicked
+        )
         if (breakpoint > Breakpoint.MD) {
             RightSide()
         }
@@ -137,7 +152,8 @@ fun Header(
 
 @Composable
 fun LeftSide(
-    breakpoint: Breakpoint
+    breakpoint: Breakpoint,
+    onMenuClicked: () -> Unit
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically
@@ -145,7 +161,10 @@ fun LeftSide(
         if (breakpoint <= Breakpoint.MD) {
             FaBars(
                 modifier = Modifier
-                    .margin(right = 15.px),
+                    .margin(right = 15.px)
+                    .onClick {
+                        onMenuClicked()
+                    },
                 size = IconSize.XL
             )
         }
@@ -185,30 +204,54 @@ fun RightSide() {
 }
 
 @Composable
-fun SocialBar() {
-    Column(
-        modifier = Modifier
-            .margin(right = 25.px)
-            .padding(topBottom = 25.px)
-            .minWidth(size = 40.px)
-            .borderRadius(r = 20.px)
-            .backgroundColor(color = Colors.White),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        SocialLinks()
+fun SocialBar(
+    row: Boolean = false
+) {
+    if (row) {
+        Row(
+            modifier = Modifier
+                .margin(top = 25.px)
+                .padding(leftRight = 25.px)
+                .minHeight(size = 40.px)
+                .borderRadius(r = 20.px)
+                .backgroundColor(color = Colors.White),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            SocialLinks(
+                row = true
+            )
+        }
+    } else {
+        Column(
+            modifier = Modifier
+                .margin(right = 25.px)
+                .padding(topBottom = 25.px)
+                .minWidth(size = 40.px)
+                .borderRadius(r = 20.px)
+                .backgroundColor(color = Colors.White),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            SocialLinks()
+        }
     }
 }
 
 @Composable
-private fun SocialLinks() {
+private fun SocialLinks(
+    row: Boolean = false
+) {
     Link(
         path = "https://github.com/mgrabarski",
         openExternalLinksStrategy = OpenLinkStrategy.IN_NEW_TAB
     ) {
         FaGithub(
             modifier = SocialLinkStyle.toModifier()
-                .margin(bottom = 40.px),
+                .margin(
+                    bottom = if (row) 0.px else 40.px,
+                    right = if (row) 40.px else 0.px
+                ),
             size = IconSize.LG
         )
     }
@@ -217,7 +260,10 @@ private fun SocialLinks() {
     ) {
         FaTwitter(
             modifier = SocialLinkStyle.toModifier()
-                .margin(bottom = 40.px),
+                .margin(
+                    bottom = if (row) 0.px else 40.px,
+                    right = if (row) 40.px else 0.px
+                ),
             size = IconSize.LG
         )
     }
@@ -226,7 +272,10 @@ private fun SocialLinks() {
     ) {
         FaInstagram(
             modifier = SocialLinkStyle.toModifier()
-                .margin(bottom = 40.px),
+                .margin(
+                    bottom = if (row) 0.px else 40.px,
+                    right = if (row) 40.px else 0.px
+                ),
             size = IconSize.LG
         )
     }
