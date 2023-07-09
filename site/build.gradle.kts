@@ -1,10 +1,13 @@
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
+import kotlinx.html.link
+import kotlinx.html.script
 
+@Suppress("DSL_SCOPE_VIOLATION") // https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.kobweb.application)
-    alias(libs.plugins.kobwebx.markdown)
+    // alias(libs.plugins.kobwebx.markdown)
 }
 
 group = "org.example.empty"
@@ -29,7 +32,7 @@ kobweb {
 }
 
 kotlin {
-    configAsKobwebApplication("empty", includeServer = true)
+    configAsKobwebApplication("empty")
 
     @Suppress("UNUSED_VARIABLE") // Suppress spurious warnings about sourceset variables not being used
     sourceSets {
@@ -45,13 +48,13 @@ kotlin {
                 implementation(libs.kobweb.core)
                 implementation(libs.kobweb.silk.core)
                 implementation(libs.kobweb.silk.icons.fa)
-                implementation(libs.kobwebx.markdown)
+                // implementation(libs.kobwebx.markdown)
              }
         }
-        val jvmMain by getting {
-            dependencies {
-                implementation(libs.kobweb.api)
-             }
-        }
+        // val jvmMain by getting {
+        //     dependencies {
+        //         implementation(libs.kobweb.api)
+        //      }
+        // }
     }
 }
