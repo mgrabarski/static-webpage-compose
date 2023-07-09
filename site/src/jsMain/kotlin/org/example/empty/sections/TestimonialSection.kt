@@ -75,7 +75,7 @@ private fun TestimonialSectionContent() {
     ) {
         SectionTitle(
             modifier = Modifier
-                .margin(bottom = 20.px),
+                .margin(bottom = 50.px),
             section = Section.Testimonial,
             alignment = Alignment.CenterHorizontally
         )
